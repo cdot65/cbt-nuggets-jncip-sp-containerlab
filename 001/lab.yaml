@@ -1,0 +1,45 @@
+name: cbtjncip01
+topology:
+  kinds:
+    crpd:
+      image: crpd:21.2R1.10
+    linux:
+      image: ghcr.io/hellt/network-multitool
+  nodes:
+    router1:
+      kind: crpd
+    router2:
+      kind: crpd
+    router3:
+      kind: crpd
+    router4:
+      kind: crpd
+    router5:
+      kind: crpd
+    router6:
+      kind: crpd
+    client1:
+      kind: "linux"
+    client2:
+      kind: "linux"
+
+  links:
+    # router1 connections
+    - endpoints: ["router1:eth1", "router2:eth1"]
+    - endpoints: ["router1:eth2", "client1:eth1"]
+
+    # router2 connections
+    - endpoints: ["router2:eth2", "router3:eth2"]
+    - endpoints: ["router2:eth3", "router4:eth3"]
+
+    # router3 connections
+    - endpoints: ["router3:eth1", "router4:eth1"]
+
+    # router4 connections
+    - endpoints: ["router4:eth2", "router5:eth2"]
+
+    # router5 connections
+    - endpoints: ["router5:eth1", "router6:eth1"]
+
+    # router5 connections
+    - endpoints: ["router6:eth2", "client2:eth1"]
