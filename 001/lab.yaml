@@ -1,4 +1,10 @@
 name: cbtjncip01
+
+mgmt:
+  network: cbtjncip01
+  ipv4_subnet: 172.21.20.0/24       # ipv4 range
+  ipv6_subnet: 2001:172:21:20::/80  # ipv6 range (optional)
+
 topology:
   kinds:
     crpd:
@@ -24,22 +30,19 @@ topology:
       kind: "linux"
 
   links:
-    # router1 connections
+    # 10.1.2.0/24
     - endpoints: ["router1:eth1", "router2:eth1"]
-    - endpoints: ["router1:eth2", "client1:eth1"]
-
-    # router2 connections
+    # 10.2.3.0/24
     - endpoints: ["router2:eth2", "router3:eth2"]
+    # 10.2.4.0/24
     - endpoints: ["router2:eth3", "router4:eth3"]
-
-    # router3 connections
+    # 10.3.4.0/24
     - endpoints: ["router3:eth1", "router4:eth1"]
-
-    # router4 connections
+    # 10.4.5.0/24
     - endpoints: ["router4:eth2", "router5:eth2"]
-
-    # router5 connections
+    # 10.5.6.0/24
     - endpoints: ["router5:eth1", "router6:eth1"]
-
-    # router5 connections
+    # 192.168.10.0/24
+    - endpoints: ["router1:eth2", "client1:eth1"]
+    # 192.168.11.0/24
     - endpoints: ["router6:eth2", "client2:eth1"]
